@@ -1,0 +1,123 @@
+---
+# playbook.yml
+- name: Configure bastion
+  hosts: bastion  #EC2 primary and secondary - still have to add bastion on update packages and install utilities
+  become: yes
+
+  tasks:
+
+    # System updates and core packages
+    - name: Update all packages
+      dnf:
+        name: '*'
+        state: latest
+        update_cache: yes
+
+    - name: Install basic utilities
+      dnf:
+        name: [vim, wget, git, telnet, yum-utils]
+        state: present
+
+
+############### PRIVATE INSTANCES ################
+
+- name: Configure instances
+  hosts: private_instances  #EC2 primary and secondary - still have to add bastion on update packages and install utilities
+  become: yes
+  vars:
+    postgres_version: "17.1"
+    python_version: "python3.9"
+    remote_user: "ec2-user"
+    app_dir: "/opt/fastapi-app"
+    service_name: fastapi-app
+
+  tasks:
+
+    # System updates and core packages
+    - name: Update all packages
+      dnf:
+        name: '*'
+        state: latest
+        update_cache: yes
+
+    - name: Install basic utilities
+      dnf:
+        name: [vim, wget, git, telnet, yum-utils]
+        state: present
+
+    - name: install system dependencies
+      dnf:
+        name:
+          - "{{ python_version }}"
+          - "{{ python_version }}-pip"
+          - "{{ python_version }}-devel"
+          - gcc
+          - libcap
+          - postgresql-devel
+        state: present
+
+    - name: Copy app code
+      copy:
+        src: "{{ playbook_dir }}/../application/" 
+        dest: "{{ app_dir }}"
+        owner: "{{ remote_user }}"
+        group: "{{ remote_user }}"
+
+
+    # Python requirements installation
+    - name: Install Python dependencies
+      pip:
+        requirements: /opt/fastapi-app/requirements.txt
+        executable: pip3
+
+    - name: Set Python capabilities
+      command: setcap 'cap_net_bind_service=+ep' /usr/bin/python3.9
+      become: yes
+
+    - name: Gather package facts
+      package_facts:
+        manager: auto  
+
+    - name: Disable Apache if present
+      block:
+        - name: Stop and disable httpd service
+          service:
+            name: httpd
+            state: stopped
+            enabled: no
+          become: yes
+        
+        - name: Remove httpd package if installed
+          dnf:
+            name: httpd
+            state: absent
+          become: yes
+      when: "'httpd' in ansible_facts.packages"
+
+    - name: Configure SELinux
+      seboolean:
+        name: httpd_can_network_connect
+        state: yes
+        persistent: yes
+      when: ansible_selinux.status == "enabled"
+
+    - name: Create systemd service file
+      template:
+        src: ./template/fastapi-app.service.j2
+        dest: /etc/systemd/system/fastapi-app.service
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Enable and start service
+      systemd:
+        name: "{{ service_name }}"
+        state: started
+        enabled: yes
+        daemon_reload: yes
+    
+    - name: restart service
+      systemd:
+        name: "{{ service_name }}"
+        state: restarted
+
