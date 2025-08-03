@@ -15,7 +15,7 @@
 
     - name: Install basic utilities
       dnf:
-        name: [vim, wget, git, telnet, yum-utils]
+        name: [vim, wget, telnet, yum-utils]
         state: present
 
 
@@ -42,7 +42,7 @@
 
     - name: Install basic utilities
       dnf:
-        name: [vim, wget, git, telnet, yum-utils]
+        name: [vim, wget, telnet, yum-utils]
         state: present
 
     - name: install system dependencies

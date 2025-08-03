@@ -2,21 +2,25 @@
 #!/bin/bash
 
 #HEALTH CHECK
-curl "${db_endpoint}/health"
+curl -v "${alb_dns}/health"
+echo""
 
 #POST users
-curl -v -X POST "${db_endpoint}/users" \
+curl -X POST "${alb_dns}/users" \
 -H "Content-Type: application/json" \
 -d '{"name":"Helena","city":"Porto","age":30}'
+echo""
 
-curl -v -X POST "${db_endpoint}/users" \
+curl -X POST "${alb_dns}/users" \
 -H "Content-Type: application/json" \
 -d '{"name":"Pedro","city":"Lisboa","age":26}'
+echo""
 
-curl -v -X POST "${db_endpoint}/users" \
+curl -X POST "${alb_dns}/users" \
 -H "Content-Type: application/json" \
 -d '{"name":"Tiago","city":"Sintra","age":35}'
-
+echo""
 
 #GET users
-curl "${db_endpoint}/users"
+curl "${alb_dns}/users"
+echo""

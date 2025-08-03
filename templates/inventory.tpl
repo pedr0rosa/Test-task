@@ -9,7 +9,7 @@ bastion_host ansible_host=${bastion_ip}
 [bastion:vars]
 ansible_connection=ssh
 ansible_ssh_private_key_file=./../keys/bastion-key-pair.pem
-ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=60 -o ConnectTimeout=30 -o TCPKeepAlive=yes'
 
 [private_instances]
 #Private key file used by SSH. Useful if using multiple keys and you do not want to use SSH agent.
@@ -21,5 +21,5 @@ ec2_secondary ansible_host=${ec2_secondary} ansible_ssh_private_key_file=./../ke
 ansible_connection=ssh
 #https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#assigning-a-variable-to-one-machine-host-variables
 #o configure a ProxyCommand for a certain host (or group).
-ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ec2-user@${bastion_ip} -i ./../keys/bastion-key-pair.pem" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ec2-user@${bastion_ip} -i ./../keys/bastion-key-pair.pem" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=60 -o ConnectTimeout=30 -o TCPKeepAlive=yes'
 ansible_ssh_extra_args='-o ForwardAgent=yes'

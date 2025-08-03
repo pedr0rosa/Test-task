@@ -56,20 +56,27 @@ resource "aws_lb_listener" "alb_listener_http" {
         Name = "alb_listener_http"
     }
 }
-/* 
- resource "aws_lb_listener" "alb_listener_https" {
+/* Didnt test the code, I done the redirect on AWS Console until SSL request
+resource "aws_lb_listener" "alb_listener_https" {
     load_balancer_arn = aws_lb.alb_pub.arn
-    port = 443
-    protocol = "HTTPS"
+    port              = 443
+    protocol          = "HTTPS"
+    ssl_policy        = <SSL policy>
+    certificate_arn   = <arn:of:your:certificate>
 
     default_action {
-        type = "forward"
-        target_group_arn = aws_lb_target_group.my_target_group.arn
+        type = "redirect"
+        
+        redirect {
+            port        = "80"
+            protocol    = "HTTP"
+        }
     }
 
     tags = {
         Name = "alb_listener_https"
     }
+}
 } */
 
 resource "aws_lb_target_group" "my_target_group" {

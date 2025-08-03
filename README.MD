@@ -19,14 +19,10 @@ exit
 
 # 3. Configure app via Ansible
 cd ansible && ansible-playbook -i inventory.ini api_v2.yml
-
+echo -e "\nIf the playbook fails due to connection issues with the instances, re-run it using:\n\n  cd ansible && ansible-playbook -i inventory.ini api_v2.yml\n\nWhen prompted, type 'yes'.\n"
 # EXPECTED OUTPUT STILL WORKING ON THE .SSH/KNOWN_HOSTS
 
         #ansible-playbook -i inventory.ini api_v2.yml
-        #[WARNING]: Found variable using reserved name: remote_user
-
-        #PLAY [Configure instances]             
-        #************************************************************************************************************************************************************************************
         #TASK [Gathering Facts] 
         #***********************************************************************************************************************************************************************************
         #The authenticity of host '10.16.6.75 (<no hostip for proxy command>)' can't be established.
@@ -47,14 +43,7 @@ cd ansible && ansible-playbook -i inventory.ini api_v2.yml
 
 # ===== TESTING =====
 # Get ALB endpoint (no Route53 configured) from AWS outputs
-ALB_URL=$(terraform output -raw alb_dns_name)
-
-# Test endpoints (HTTP only)
-curl "http://$ALB_URL/health"
-curl "http://$ALB_URL/users"
-curl -X POST "http://$ALB_URL/users" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Helena","city":"Porto","age":30}'
+./app_tests.sh
 
 # ===== CLEANUP =====
 # Destroy all resources
