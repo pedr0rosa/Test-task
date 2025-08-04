@@ -1,4 +1,4 @@
-<h1 align="center"> ⚠️ THE SOLUTION DOES NOT INCLUDE ROUTE53!</h1>
+<h1 align="center"> ⚠️ THE SOLUTION DOES NOT INCLUDE ROUTE53</h1>
 <br>
 
 # 1. Configure AWS & DB credentials
