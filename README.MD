@@ -27,7 +27,7 @@ Expect the prompt below, to continue with the deployment please type "yes"
 
 ```
 
-In case the ansible playbook triggers an error, stopping the script (most likely), please rerun the following command until it completes
+In case the ansible playbook triggers an error, stopping the script (most likely), please rerun the following command until it completes,
 
 ```bash
 cd ansible && ansible-playbook -i inventory.ini api_v2.yml
@@ -78,7 +78,7 @@ Once the playbook is fully completed, run the following script to run the tests 
  UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ", "unreachable": true}
  UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Connection timed out during banner exchange\r\nConnection to UNKNOWN port 65535 timed out", "unreachable": true}
 ```
-or warnings
+or warnings,
 ```bash
 [WARNING]: sftp transfer mechanism failed on [52.56.70.94]. Use ANSIBLE_DEBUG=1 to see detailed information
 
