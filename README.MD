@@ -3,7 +3,7 @@
 ![Solution](diagram/testask_architecture.png)
 
 ⚠️ The solution does not include Route 53
-
+<br>
 <h1 align="center">🛠️ Deployment Instructions 🛠️</h1>
 
 # 1. Configure AWS & DB credentials
