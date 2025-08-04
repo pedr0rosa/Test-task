@@ -1,3 +1,8 @@
+<h1 align="center">⭐ Soluttion Diagram ⭐</h1>
+
+![Solution](diagram/testask_architecture.png)
+
+
 <h1 align="center"> ⚠️ THE SOLUTION DOES NOT INCLUDE ROUTE53</h1>
 
 # 1. Configure AWS & DB credentials
