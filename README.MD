@@ -102,8 +102,8 @@ or warnings
 2. Request ACM SSL certificate
 3. Configure ALB to:
    - Redirect HTTPS (443) → HTTP (80)
-   - Terminate TLS at load balancer
-   - Maintain encrypted traffic to instances
+   - Add the SSL certificate to the listener
+   - encrypted traffic towards instances
 
 ### Ansible Optimization
 - optimise playbooks and reusability
@@ -111,7 +111,6 @@ or warnings
 - add error handling
 
 ### Security Enhancements
-- implement solution for key rotation
-- establish SSH certificate 
+- solution for key rotation
 - tight ALB security policies
 - harden IAM policies and roles
