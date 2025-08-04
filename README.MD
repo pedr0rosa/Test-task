@@ -1,6 +1,6 @@
 <h1 align="center">⭐ Solution Diagram ⭐</h1>
 
-<h1 align="center"> ![Solution](diagram/testask_architecture.png)</h1>
+![Solution](diagram/testask_architecture.png)
 
 <h1 align="center"> ⚠️ The solution does not include Route 53</h1>
 
