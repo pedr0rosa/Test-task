@@ -1,5 +1,6 @@
-## ⚠️ IMPORT NOTE: THE SOLUTION DOES NOT INCLUDE ROUTE53! 
+
 <h1 align="center">ALB DNS NAME WILL BE USED INSTEAD</h1>
+<h1 align="center">## ⚠️ IMPORT NOTE: THE SOLUTION DOES NOT INCLUDE ROUTE53!</h1>
 
 # 1. Configure AWS & DB credentials
 ```bash
