@@ -107,7 +107,7 @@ or warnings
 
 ### Ansible Optimization
 - optimise playbooks and reusability
-- inmprove first-run reliability
+- improve first-run reliability
 - add error handling
 
 ### Security Enhancements
