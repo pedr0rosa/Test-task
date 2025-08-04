@@ -1,4 +1,5 @@
-## ⚠️IMPORT NOTE: THE SOLUTION DOES NOT INCLUDE ROUTE53! "ALB DNS NAME" WILL BE USED INSTEAD!
+## ⚠️IMPORT NOTE: THE SOLUTION DOES NOT INCLUDE ROUTE53! <br> 
+### ALB DNS NAME WILL BE USED INSTEAD!
 
 # 1. Configure AWS & DB credentials
 ```bash
@@ -10,12 +11,11 @@ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
 
 # 2. Deploy infrastructure
 - Run from the project directory
-If when ansible triggers an error and stops the script (most likely), please rerun the following command until it completes
 ```bash
 ./build_deploy.sh
 ```
-When it presents on your prompt if you with to connect type "yes", like the example below:
-
+Expected the prompt to reply "yes" when it runs the ansible playbook,
+```bash
         #This key is not known by any other names.
         #Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
         #Please type 'yes', 'no' or the fingerprint: yes
@@ -24,6 +24,24 @@ When it presents on your prompt if you with to connect type "yes", like the exam
         #YES
         #Please type 'yes', 'no' or the fingerprint: yes
         #ok: [ec2_secondary]
+
+```
+
+In case the ansible playbook triggers an error, stopping the script (most likely), please rerun the following command until it completes
+
+```bash
+cd ansible && ansible-playbook -i inventory.ini api_v2.yml
+```
+
+### Possible errors to be prompted:
+
+```bash
+ UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Shared connection to 10.16.6.91 closed.", "unreachable": true}
+ UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ", "unreachable": true}
+ UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Connection timed out during banner exchange\r\nConnection to UNKNOWN port 65535 timed out", "unreachable": true}
+```
+If it is the case please run the following command
+When it presents on your prompt if you with to connect type "yes", like the example below:
 
 
 ##   TESTING  
@@ -35,7 +53,7 @@ Once the playbook is fully completed, run the following script to run the tests 
 
 ---
    <h1 align="center">📋 BRIEF REPORT</h1>
-
+<br>
 
 
 ## ✅ Improvements
@@ -60,7 +78,6 @@ Once the playbook is fully completed, run the following script to run the tests 
 - for example:
 ```bash
  UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Shared connection to 10.16.6.91 closed.", "unreachable": true}
- # OR
  UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ", "unreachable": true}
  UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Connection timed out during banner exchange\r\nConnection to UNKNOWN port 65535 timed out", "unreachable": true}
 ```
