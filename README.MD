@@ -1,4 +1,4 @@
-## ⚠️IMPORT NOTE: THE SOLUTION DOES NOT INCLUDE ROUTE53! <br> 
+## ⚠️ IMPORT NOTE: THE SOLUTION DOES NOT INCLUDE ROUTE53! <br> 
 ### ALB DNS NAME WILL BE USED INSTEAD!
 
 # 1. Configure AWS & DB credentials
@@ -10,11 +10,12 @@ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
 ```
 
 # 2. Deploy infrastructure
-- Run from the project directory
+Run from the project directory
 ```bash
 ./build_deploy.sh
 ```
-Expected the prompt to reply "yes" when it runs the ansible playbook,
+Expect the prompt below, to continue with the deployment please type "yes"
+
 ```bash
         #This key is not known by any other names.
         #Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
@@ -41,7 +42,6 @@ cd ansible && ansible-playbook -i inventory.ini api_v2.yml
  UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Connection timed out during banner exchange\r\nConnection to UNKNOWN port 65535 timed out", "unreachable": true}
 ```
 If it is the case please run the following command
-When it presents on your prompt if you with to connect type "yes", like the example below:
 
 
 ##   TESTING  
