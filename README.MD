@@ -4,6 +4,8 @@
 
 ⚠️ The solution does not include Route 53
 
+<h1 align="center">🛠️ Deployment Instructions 🛠️</h1>
+
 # 1. Configure AWS & DB credentials
 ```bash
 # ===== SETUP =====
