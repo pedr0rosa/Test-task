@@ -2,7 +2,7 @@
 
 ![Solution](diagram/testask_architecture.png)
 
-<h1 align="center"> ⚠️ The solution does not include Route 53</h1>
+<h3 align="center"> ⚠️ The solution does not include Route 53</h3>
 
 # 1. Configure AWS & DB credentials
 ```bash
