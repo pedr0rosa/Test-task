@@ -1,8 +1,8 @@
-<h1 align="center">⭐ Solution Diagram ⭐</h1>
+<h1 align="center">⭐ Task solution Diagram ⭐</h1>
 
 ![Solution](diagram/testask_architecture.png)
 
-<h3 align="center"> ⚠️ The solution does not include Route 53</h3>
+⚠️ The solution does not include Route 53
 
 # 1. Configure AWS & DB credentials
 ```bash
