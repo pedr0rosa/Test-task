@@ -52,8 +52,6 @@ Once the playbook is fully completed, run the following script to run the tests 
 
 ---
    <h1 align="center">📋 BRIEF REPORT</h1>
-<br>
-
 
 ## ✅ Improvements
 
