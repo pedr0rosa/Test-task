@@ -1,4 +1,5 @@
-<h1 align="center"> ⚠️ IMPORT NOTE: THE SOLUTION DOES NOT INCLUDE ROUTE53!</h1>
+<h1 align="center"> ⚠️ THE SOLUTION DOES NOT INCLUDE ROUTE53!</h1>
+#
 <h1 align="center">ALB DNS name will be used instead</h1>
 
 
